@@ -19,10 +19,7 @@ jobs:
           toolchain: nightly-2022-08-08
           components: rust-src, llvm-tools-preview
           target: riscv64imac-unknown-none-elf
-
-      - name: Install Target
-        run: |
-          rustup target add riscv64imac-unknown-none-elf
+          override: true
       - uses: baptiste0928/cargo-install@v1
         with:
           crate: cargo-binutils
