@@ -47,14 +47,6 @@ jobs:
           cd qemu-7.0.0
           sudo make install
           qemu-system-riscv64 --version
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: cargo-${{ hashFiles('**/Cargo.lock') }}
       - name: build os.bin
         run: |
           make
