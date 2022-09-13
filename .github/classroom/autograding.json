@@ -1,3 +1,4 @@
 {
-    "outputFile": "qemu_run_output.txt"
+    "outputFile": "qemu_run_output.txt",
+    "externalFile": "handleResult.js"
 }
