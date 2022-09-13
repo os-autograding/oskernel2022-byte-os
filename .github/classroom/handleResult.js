@@ -1,5 +1,5 @@
 function run({points, availablePoints}, { log, github, request }) {
-    log(github);
+    console.log(github);
     log(request.post);
 }
 
