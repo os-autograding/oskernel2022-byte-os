@@ -116,11 +116,11 @@ pub extern "C" fn rust_main(hart_id: usize, device_tree_p_addr: usize) -> ! {
     INode::mkdir(None, "/bin", 0).expect("can't create bin directory");
     INode::mkdir(None, "/sbin", 0).expect("can't create sbin directory");
     busybox_node.linkat("bin/busybox");
-    let lmbench_all = INode::get(None, "lmbench_all").expect("can't find busybox");
-    lmbench_all.linkat("sbin/lmbench_all");
-    lmbench_all.linkat("bin/lmbench_all");
-    // let lmbench_all = INode::get(None, "busybox_cmd.txt").expect("can't find busybox");
-    lmbench_all.linkat("var/tmp/XXX");
+    // let lmbench_all = INode::get(None, "lmbench_all").expect("can't find busybox");
+    // lmbench_all.linkat("sbin/lmbench_all");
+    // lmbench_all.linkat("bin/lmbench_all");
+    // // let lmbench_all = INode::get(None, "busybox_cmd.txt").expect("can't find busybox");
+    // lmbench_all.linkat("var/tmp/XXX");
 
     INode::root().add(INode::new("proc".to_string(), 
         DiskFileEnum::None, FileType::Directory, None));
@@ -130,7 +130,7 @@ pub extern "C" fn rust_main(hart_id: usize, device_tree_p_addr: usize) -> ! {
         // 非k210缓冲文件
         cache_file("busybox");
         cache_file("lua");
-        cache_file("lmbench_all");
+        // cache_file("lmbench_all");
     }
 
     // 初始化多任务
