@@ -223,7 +223,7 @@ let points = {
     'entry-dynamic.exe wcsstr_false_negative': [0 ,1],
 }
 
-function run(outputFile) {
+function judge(outputFile) {
     let current = '';
     let currentStatus = false;
     outputFile.trim().split('\n').forEach((value, index) => {
@@ -246,4 +246,4 @@ function run(outputFile) {
     return points;
 }
 
-module.exports.run = run;
+module.exports.judge = judge;
