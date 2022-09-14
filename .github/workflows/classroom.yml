@@ -53,7 +53,7 @@ jobs:
       - name: run os
         run: |
           wget https://github.com/os-autograding/testsuits-in-one/raw/gh-pages/fat32.img
-          timeout 600 qemu-system-riscv64 \
+          timeout 60 qemu-system-riscv64 \
             -machine virt \
             -bios sbi-qemu \
             -device loader,file=kernel-qemu,addr=0x80200000 \
