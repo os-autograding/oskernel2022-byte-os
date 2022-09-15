@@ -71,3 +71,5 @@ jobs:
         run: |
           git clone $SCRIPT_REPO .github/classroom
       - uses: yfblock/os-autograding@master
+        with:
+          outputFile: qemu_run_output1.txt
