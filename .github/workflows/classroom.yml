@@ -80,10 +80,9 @@ jobs:
       - run: |
           mkdir autograding-logs
           cd autograding-logs
-          echo "${{ steps.autograding.outputs.details }}" >> `date +%Y_%m_%d_%H_%m_%S`.md
-
+          mkdir test.md
       - name: GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v3.0.0
+        uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
           build_dir: autograding-logs
