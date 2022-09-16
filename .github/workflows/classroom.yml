@@ -77,10 +77,6 @@ jobs:
       - name: Test Autograding Output
         run: |
           echo "${{ steps.autograding.outputs.details }}"
-      - name: deploy log
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages
       - run: |
           mkdir autograding-logs
           cd autograding-logs
