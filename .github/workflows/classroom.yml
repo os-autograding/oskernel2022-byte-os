@@ -16,6 +16,8 @@ jobs:
   build:
     name: Autograding
     runs-on: ubuntu-latest
+    outputs:
+      details: ${{ steps.autograding.outputs.details }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
@@ -74,20 +76,24 @@ jobs:
         id: autograding
         with:
           outputFile: qemu_run_output.txt
+  deploy:
+    name: Deploy to pages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: gh-pages
       - name: Test Autograding Output
-        run: |
-          echo "${{ steps.autograding.outputs.details }}"
+          run: |
+            echo "${{ needs.build.outputs.details }}"
       - run: |
-          git config user.name yfblock
-          git config user.email 321353225@qq.com
-          mkdir autograding-logs
-          cd autograding-logs
           echo "123" >> t.md
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
-          build_dir: autograding-logs
+          # build_dir: autograding-logs
           # keep_history: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
