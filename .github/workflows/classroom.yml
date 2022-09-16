@@ -85,8 +85,8 @@ jobs:
         with:
           ref: gh-pages
       - name: Test Autograding Output
-          run: |
-            echo "${{ needs.build.outputs.details }}"
+        run: |
+          echo "${{ needs.build.outputs.details }}"
       - run: |
           echo "123" >> t.md
       - name: GitHub Pages
