@@ -5,7 +5,9 @@ on: [push]
 permissions:
   checks: write
   actions: read
-  # contents: read
+  contents: read
+  pull-requests: write
+  repository-projects: write
 
 env:
   IMG_URL: https://github.com/os-autograding/testsuits-in-one/raw/gh-pages/fat32.img # 镜像url
