@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       details: ${{ steps.autograding.outputs.details }}
+      points: ${{ steps.autograding.outputs.points}}
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
@@ -83,7 +84,8 @@ jobs:
       - run: |
           mkdir autograding_logs
           cd autograding_logs
-          echo "${{ needs.build.outputs.details }}" >> `date +%Y_%m_%d_%H_%m_%S`.txt
+          echo -ne "${{ needs.build.outputs.details }}\n${{ needs.build.outputs.points }}" >> `date +%Y_%m_%d_%H_%m_%S`.txt
+
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
