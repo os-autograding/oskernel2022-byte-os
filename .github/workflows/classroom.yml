@@ -83,12 +83,12 @@ jobs:
       - run: |
           mkdir autograding_logs
           cd autograding_logs
-          echo "${{ needs.build.outputs.details }}" >> `date +%Y_%m_%d_%H_%m_%S`.md
+          echo "${{ needs.build.outputs.details }}" >> `date +%Y_%m_%d_%H_%m_%S`.txt
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
           build_dir: autograding_logs
-          # keep_history: true
+          keep_history: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
