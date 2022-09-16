@@ -80,7 +80,7 @@ jobs:
       - run: |
           mkdir autograding-logs
           cd autograding-logs
-          mkdir test.md
+          echo "123" >> t.md
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
