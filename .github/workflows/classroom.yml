@@ -71,5 +71,9 @@ jobs:
         run: |
           git clone $SCRIPT_REPO .github/classroom
       - uses: yfblock/os-autograding@master
+        id: autograding
         with:
           outputFile: qemu_run_output.txt
+      - name: Test Autograding Output
+        run: |
+          echo "${{ steps.autograding.outputs.details }}"
