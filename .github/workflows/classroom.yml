@@ -3,9 +3,10 @@ name: GitHub Classroom Workflow
 on: [push]
 
 permissions:
-  checks: write
-  actions: read
-  contents: read
+  # checks: write
+  # actions: read
+  # contents: read
+  issues: write
   pull-requests: write
   repository-projects: write
 
