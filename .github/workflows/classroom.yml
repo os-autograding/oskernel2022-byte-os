@@ -77,3 +77,14 @@ jobs:
       - name: Test Autograding Output
         run: |
           echo "${{ steps.autograding.outputs.details }}"
+      - name: deploy log
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+        run: |
+          echo "${{ steps.autograding.outputs.details }}" >> `date +%Y_%m_%d_%H_%m_%S`.md
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
