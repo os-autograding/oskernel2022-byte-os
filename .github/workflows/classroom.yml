@@ -82,9 +82,15 @@ jobs:
         with:
           ref: gh-pages
       - run: |
+          mkdir autograding-logs
+          cd autograding-logs
           echo "${{ steps.autograding.outputs.details }}" >> `date +%Y_%m_%d_%H_%m_%S`.md
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "generated"
-          git push
+
+      - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3.0.0
+        with:
+          target_branch: gh-pages
+          build_dir: autograding-logs
+          keep_history: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
