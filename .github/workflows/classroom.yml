@@ -87,6 +87,6 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: autograding-logs
-          keep_history: true
+          # keep_history: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
