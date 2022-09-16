@@ -2,14 +2,6 @@ name: GitHub Classroom Workflow
 
 on: [push]
 
-permissions:
-  # checks: write
-  # actions: read
-  # contents: read
-  issues: write
-  pull-requests: write
-  repository-projects: write
-
 env:
   IMG_URL: https://github.com/os-autograding/testsuits-in-one/raw/gh-pages/fat32.img # 镜像url
   TIMEOUT: 60 # 超时时间
