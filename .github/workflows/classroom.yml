@@ -5,7 +5,7 @@ on: [push]
 permissions:
   checks: write
   actions: read
-  contents: read
+  # contents: read
 
 env:
   IMG_URL: https://github.com/os-autograding/testsuits-in-one/raw/gh-pages/fat32.img # 镜像url
@@ -94,6 +94,6 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: autograding_logs
-          # keep_history: true
+          keep_history: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
