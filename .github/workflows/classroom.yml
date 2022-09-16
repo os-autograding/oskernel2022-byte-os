@@ -6,6 +6,7 @@ env:
   IMG_URL: https://github.com/os-autograding/testsuits-in-one/raw/gh-pages/fat32.img # 镜像url
   TIMEOUT: 60 # 超时时间
   SCRIPT_REPO: https://github.com/os-autograding/EvaluationScript # 脚本仓库
+  TZ: Asia/Shanghai # 设置时区
 
 jobs:
   build:
@@ -84,7 +85,6 @@ jobs:
       - run: |
           mkdir autograding_logs
           cd autograding_logs
-          timedatectl set-timezone Asia/Shangha
           echo -ne "${{ needs.build.outputs.details }}\nPoints: ${{ needs.build.outputs.points }}" \
             >> `date +%Y_%m_%d_%H_%M_%S`.txt
 
