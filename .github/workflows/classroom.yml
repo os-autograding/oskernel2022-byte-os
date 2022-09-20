@@ -86,8 +86,10 @@ jobs:
           apt install jq
           mkdir autograding_logs
           cd autograding_logs
-          echo -ne "${{ needs.build.outputs.details }}\nPoints: ${{ needs.build.outputs.points }}" \
-            >> `date +%Y_%m_%d_%H_%M_%S`.txt
+          echo "LOG_FILE=`date +%Y_%m_%d_%H_%M_%S`.txt" >> $GITHUB_ENV
+          echo ${env.LOG_FILE}
+# echo -ne "${{ needs.build.outputs.details }}\nPoints: ${{ needs.build.outputs.points }}" \
+#   >> `date +%Y_%m_%d_%H_%M_%S`.txt
 
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
