@@ -99,9 +99,10 @@ jobs:
           echo -ne "${{ needs.build.outputs.details }}\n" > $FILE_NAME
           echo -ne "Points: ${{ needs.build.outputs.points }}" > $FILE_NAME
 
-          cat older.json | jq ".default |= \"$FILE_NAME\"" > latest.json
+          cat older.json | jq ".main |= \"$FILE_NAME\"" > latest.json
 
-          echo -ne "# Got Points\n\n![Points bar](../../blob/gh-pages/points-badge.svg)" > README.md
+          echo -ne "# Got Points" > README.md
+          echo "[Points bar](../../blob/gh-pages/points-badge.svg)" >> README.md
 
           rm older.json
       - name: Make points svg
