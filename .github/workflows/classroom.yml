@@ -86,7 +86,7 @@ jobs:
           mkdir autograding_logs
           cd autograding_logs
 
-          wget -q https://raw.githubusercontent.com/$GITHUB_ACTION_REPOSITORY/gh-pages/latest.json
+          RESULT=`wget -q https://raw.githubusercontent.com/$GITHUB_ACTION_REPOSITORY/gh-pages/latest.json`
           if [  -f "latest.json"  ]; then
               echo "file exists"
           else
