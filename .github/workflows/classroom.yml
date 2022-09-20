@@ -80,13 +80,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Save Log File
-        env:
-          FILE_NAME: 'default'
+        continue-on-error: true
         run: |
           mkdir autograding_logs
           cd autograding_logs
 
-          RESULT=`wget -q https://raw.githubusercontent.com/$GITHUB_ACTION_REPOSITORY/gh-pages/latest.json`
+          git restore -s gh-pages -- latest.json
           if [  -f "latest.json"  ]; then
               echo "file exists"
           else
