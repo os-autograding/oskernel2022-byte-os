@@ -101,7 +101,7 @@ jobs:
 
           cat older.json | jq ".default |= \"$FILE_NAME\"" > latest.json
 
-          echo -ne "# Got Points\n\n![Points bar](../../blob/gh-pages/points-bar.svg)" > README.md
+          echo -ne "# Got Points\n\n![Points bar](../../blob/gh-pages/points-badge.svg)" > README.md
 
           rm older.json
       - name: Make points svg
