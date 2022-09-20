@@ -83,12 +83,22 @@ jobs:
         run: |
           echo "${{ needs.build.outputs.details }}"
       - run: |
+          apt install jq
           mkdir autograding_logs
           cd autograding_logs
           echo -ne "${{ needs.build.outputs.details }}\nPoints: ${{ needs.build.outputs.points }}" \
             >> `date +%Y_%m_%d_%H_%M_%S`.txt
 
       - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: autograding_logs
+          keep_history: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: PR
         uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
