@@ -4,7 +4,7 @@ on: [push]
 
 env:
   IMG_URL: https://github.com/os-autograding/testsuits-in-one/raw/gh-pages/fat32.img # 镜像url
-  TIMEOUT: 60 # 超时时间
+  TIMEOUT: 30 # 超时时间
   SCRIPT_REPO: https://github.com/os-autograding/EvaluationScript # 脚本仓库
   TZ: Asia/Shanghai # 设置时区
 
@@ -79,16 +79,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: 'gh-pages'
-      - name: Test Autograding Output
-        run: |
-          echo "${{ needs.build.outputs.details }}"
       - name: Save Log File
         env:
           FILE_NAME: 'default'
         run: |
-          sudo apt install jq
           if [  -f "latest.json"  ]; then
               echo "file exists"
           else
@@ -97,10 +91,8 @@ jobs:
           mkdir autograding_logs
           cd autograding_logs
           FILE_NAME=`date +%Y_%m_%d_%H_%M_%S`.txt
-          echo $FILE_NAME
-
-# echo -ne "${{ needs.build.outputs.details }}\nPoints: ${{ needs.build.outputs.points }}" \
-#   >> `date +%Y_%m_%d_%H_%M_%S`.txt
+          echo -ne "${{ needs.build.outputs.details }}\n" >> $FILE_NAME
+          echo -ne "Points: ${{ needs.build.outputs.points }}" >> $FILE_NAME
 
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
