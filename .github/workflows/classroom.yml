@@ -83,13 +83,15 @@ jobs:
         env:
           FILE_NAME: 'default'
         run: |
+          mkdir autograding_logs
+          cd autograding_logs
+
+          wget https://raw.githubusercontent.com/$GITHUB_ACTION_REPOSITORY/gh-pages/latest.json
           if [  -f "latest.json"  ]; then
               echo "file exists"
           else
               echo "file not exists"
           fi
-          mkdir autograding_logs
-          cd autograding_logs
           FILE_NAME=`date +%Y_%m_%d_%H_%M_%S`.txt
           echo -ne "${{ needs.build.outputs.details }}\n" >> $FILE_NAME
           echo -ne "Points: ${{ needs.build.outputs.points }}" >> $FILE_NAME
