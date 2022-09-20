@@ -108,7 +108,7 @@ jobs:
         uses: markpatterson27/points-bar@v1
         with:
           points: '${{ needs.build.outputs.points }}'
-          path: 'points-badge.svg'
+          path: 'autograding_logs/points-badge.svg'
           type: 'badge'
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
