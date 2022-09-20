@@ -79,12 +79,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Generate The Newest Json File
         continue-on-error: true
-        run: |
-          git restore -s gh-pages -- latest.json
+        with:
+          ref: 'gh-pages'
       - name: Save Log File
-        continue-on-error: true
         run: |
           mkdir autograding_logs
           cd autograding_logs
@@ -102,7 +100,7 @@ jobs:
           cat older.json | jq ".main |= \"$FILE_NAME\"" > latest.json
 
           echo -ne "# Got Points\n" > README.md
-          echo "[Points bar](../../blob/gh-pages/points-badge.svg)" >> README.md
+          echo -ne "[Points bar](../../blob/gh-pages/points-badge.svg)" >> README.md
 
           rm older.json
       - name: Make points svg
