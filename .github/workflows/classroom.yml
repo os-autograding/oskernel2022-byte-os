@@ -89,7 +89,7 @@ jobs:
           sudo apt install jq
           mkdir autograding_logs
           cd autograding_logs
-          run: echo "::set-env name=FILE_NAME::`date +%Y_%m_%d_%H_%M_%S`.txt"
+          echo "::set-env name=FILE_NAME::`date +%Y_%m_%d_%H_%M_%S`.txt"
           echo $FILE_NAME
 # echo -ne "${{ needs.build.outputs.details }}\nPoints: ${{ needs.build.outputs.points }}" \
 #   >> `date +%Y_%m_%d_%H_%M_%S`.txt
