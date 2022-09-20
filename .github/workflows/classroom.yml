@@ -79,7 +79,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        ref: 'gh-pages'
+        with:
+          ref: 'gh-pages'
       - name: Test Autograding Output
         run: |
           echo "${{ needs.build.outputs.details }}"
@@ -88,16 +89,15 @@ jobs:
           FILE_NAME: 'default'
         run: |
           sudo apt install jq
-          mkdir autograding_logs
-          cd autograding_logs
-          FILE_NAME=`date +%Y_%m_%d_%H_%M_%S`.txt
-          echo $FILE_NAME
-          git restore -s gh-pages -- latest.json
           if [  -f "latest.json"  ]; then
               echo "file exists"
           else
               echo "file not exists"
           fi
+          mkdir autograding_logs
+          cd autograding_logs
+          FILE_NAME=`date +%Y_%m_%d_%H_%M_%S`.txt
+          echo $FILE_NAME
 
 # echo -ne "${{ needs.build.outputs.details }}\nPoints: ${{ needs.build.outputs.points }}" \
 #   >> `date +%Y_%m_%d_%H_%M_%S`.txt
