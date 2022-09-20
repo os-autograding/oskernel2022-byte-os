@@ -101,8 +101,15 @@ jobs:
 
           cat older.json | jq ".default |= \"$FILE_NAME\"" > latest.json
 
-          rm older.json
+          echo -ne "# Got Points\n\n![Points bar](points-bar.svg)" > README.md
 
+          rm older.json
+      - name: Make points svg
+        uses: markpatterson27/points-bar@v1
+        with:
+          points: '${{ needs.build.outputs.points }}'
+          path: 'points-badge.svg'
+          type: 'badge'
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
