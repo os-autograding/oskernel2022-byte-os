@@ -79,21 +79,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Generate The Newest Json File
+        continue-on-error: true
+        run: |
+          git restore -s gh-pages -- latest.json
       - name: Save Log File
         continue-on-error: true
         run: |
           mkdir autograding_logs
           cd autograding_logs
 
-          git restore -s gh-pages -- latest.json
-          if [  -f "latest.json"  ]; then
-              echo "file exists"
+          if [  -f "../latest.json"  ]; then
+              cp ../latest.json older.json
           else
-              echo "file not exists"
+              echo "{}" > older.json
           fi
+
           FILE_NAME=`date +%Y_%m_%d_%H_%M_%S`.txt
-          echo -ne "${{ needs.build.outputs.details }}\n" >> $FILE_NAME
-          echo -ne "Points: ${{ needs.build.outputs.points }}" >> $FILE_NAME
+          echo -ne "${{ needs.build.outputs.details }}\n" > $FILE_NAME
+          echo -ne "Points: ${{ needs.build.outputs.points }}" > $FILE_NAME
+
+          cat older.json | jq ".default |= \"$FILE_NAME\"" > latest.json
+
+          rm older.json
 
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
