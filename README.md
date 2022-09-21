@@ -1,3 +1,3 @@
 # Got Points
 
-![Points bar](points-bar.svg)
+![Points bar](../../blob/gh-pages/points-bar.svg)
