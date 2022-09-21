@@ -1,1 +1,2 @@
-# Got Points[Points bar](../../blob/gh-pages/points-badge.svg)
+# Got Points
+[Points bar](../../blob/gh-pages/points-badge.svg)
