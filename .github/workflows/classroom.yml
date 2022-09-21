@@ -95,7 +95,7 @@ jobs:
 
           FILE_NAME=`date +%Y_%m_%d_%H_%M_%S`.txt
           echo -ne "${{ needs.build.outputs.details }}\n" > $FILE_NAME
-          echo -ne "Points: ${{ needs.build.outputs.points }}" > $FILE_NAME
+          echo -ne "Points: ${{ needs.build.outputs.points }}" >> $FILE_NAME
           cat older.json | jq ".default |= \"$FILE_NAME\"" > latest.json
           rm older.json
 
